@@ -1,0 +1,31 @@
+﻿@using System.Web.Mvc.Html
+@model MyUCommerceApp.Website.Models.PaymentViewModel
+@{
+    Layout = "Layout.cshtml";
+}
+
+<form method="POST">
+    <div class="row-fluid well">
+        <legend>Available payment methods</legend>
+        
+        @foreach (var paymentMethod in Model.AvailablePaymentMethods)
+        {
+            <div>
+                @if (paymentMethod.Selected)
+                {
+                    @Html.RadioButtonFor(x => x.SelectedPaymentMethodId, paymentMethod.Value, new { @checked = "checked" })
+                    <span>@paymentMethod.Text</span>
+                }
+                else
+                {
+                    @Html.RadioButtonFor(x => x.SelectedPaymentMethodId, paymentMethod.Value)
+                    <span>@paymentMethod.Text</span>
+                }
+            </div>
+        }
+    </div>
+
+    <a href="/shipping" class="btn btn-small">Back to Shipping Method</a>
+
+    <input type="submit" class="btn btn-sm btn-arrow-right pull-right" value="Continue to preview order" />
+</form>

@@ -1,0 +1,119 @@
+﻿@using System.Web.Caching
+@using UCommerce
+@using UCommerce.Api
+@using UCommerce.EntitiesV2
+@model MyUCommerceApp.Website.Models.PurchaseOrderViewModel
+@{
+    Layout = "Layout.cshtml";
+}
+
+<div class="row-fluid well">
+    <div class="span6">
+        <h3>Billing address</h3>
+        <br>
+        <address>
+            <strong>
+                @Model.BillingAddress.FirstName @Model.BillingAddress.LastName
+            </strong>
+            <br>
+            @Model.BillingAddress.Line1 @Model.BillingAddress.Line2<br>
+            @Model.BillingAddress.PostalCode 
+            @Model.BillingAddress.City<br>
+            @Country.Get(Model.BillingAddress.CountryId).Name<br>
+            <br>
+            <abbr title="Phone">P:</abbr>@Model.BillingAddress.PhoneNumber<br>
+            <abbr title="Mobile">M:</abbr>@Model.BillingAddress.MobilePhoneNumber<br>
+            <abbr title="Email">E:</abbr><a id="content_1_lnkBillingMail" href="mailto:morten@skjoldager.eu">@Model.BillingAddress.EmailAddress</a>
+        </address>
+    </div>
+
+    <div class="span6">
+        <h3>Shipping address</h3>
+        <br>
+        <address>
+            <strong>
+                @Model.ShippingAddress.FirstName @Model.ShippingAddress.LastName
+            </strong>
+            <br>
+            @Model.ShippingAddress.Line1 @Model.ShippingAddress.Line2<br>
+            @Model.ShippingAddress.PostalCode
+            @Model.ShippingAddress.City<br>
+            @Country.Get(Model.ShippingAddress.CountryId).Name<br>
+            <br>
+            <abbr title="Phone">P:</abbr>@Model.ShippingAddress.PhoneNumber<br>
+            <abbr title="Mobile">M:</abbr>@Model.ShippingAddress.MobilePhoneNumber<br>
+            <abbr title="Email">E:</abbr><a id="content_1_lnkBillingMail" href="mailto:morten@skjoldager.eu">@Model.ShippingAddress.EmailAddress</a>
+        </address>
+    </div>
+
+</div>
+
+<h3>Order details</h3>
+<table class="orderPreview table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Sku</th>
+            <th>Product name</th>
+            <th>Quantiy</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.OrderLines.Count; i++)
+        {
+            var line = Model.OrderLines[i];
+            <tr>
+
+                @Html.HiddenFor(model => model.OrderLines[i].Sku)
+                @Html.HiddenFor(model => model.OrderLines[i].VariantSku)
+                @Html.HiddenFor(model => model.OrderLines[i].OrderLineId)
+
+                <td>@line.Sku - @line.VariantSku</td>
+                <td>@line.ProductName</td>
+                <td>@Model.OrderLines[i].Quantity</td>
+                <td>@line.Total</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td class="no-border" colspan="2"></td>
+            <td style="width: 110px">Sub total</td>
+            <td class="money">@Model.SubTotal</td>
+        </tr>
+        <tr>
+            <td class="no-border" colspan="2"></td>
+            <td>Tax total</td>
+            <td class="money">@Model.TaxTotal</td>
+        </tr>
+        <tr>
+            <td class="no-border" colspan="2"></td>
+            <td>Discounts </td>
+            <td class="money">@Model.DiscountTotal</td>
+        </tr>
+        <tr>
+            <td class="no-border" colspan="2"></td>
+            <td>Shipping total</td>
+            <td class="money">@Model.ShippingTotal</td>
+        </tr>
+        <tr>
+            <td class="no-border" colspan="2"></td>
+            <td>Payment total</td>
+            <td class="money">@Model.PaymentTotal</td>
+        </tr>
+        <tr>
+            <td class="no-border" colspan="2"></td>
+            <td>Order total</td>
+            <td class="money">@Model.OrderTotal</td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<form method="POST">
+    <a href="/payment" class="btn btn-small">Back to Payment Method</a>
+
+    <input type="hidden" name="checkout" value="true" />
+    <input type="submit" class="btn btn-sm btn-arrow-right pull-right" value="Confirm and continue to payment" />
+</form>

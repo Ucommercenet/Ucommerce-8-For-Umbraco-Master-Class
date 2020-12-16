@@ -1,0 +1,52 @@
+﻿body {
+	padding-top: 60px;
+}
+
+ul.nav.nav-list span {
+    color: #777777;
+}
+
+h3 {
+	color: #767676;
+}
+
+td.no-border {
+    border: none;
+}
+
+.money {
+	text-align: right !important;
+}
+
+.btn {
+    padding: 3px 14px;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    background: #59B4EE; /*6dbe78*/
+    filter:none;
+    border: 1px solid #59B4EE;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+}
+
+.btn:hover {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    background-color: #4A95C5;
+}
+
+.btn.btn-arrow-right {
+	background-image: url(../img/uCommerce/white-arrow-right.png);
+	background-position: right center;
+	background-repeat: no-repeat;
+	padding-right: 30px;
+}
+
+.orderPreview tbody tr:last-child {
+	border-bottom: 1px solid #dddddd;
+}

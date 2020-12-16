@@ -1,0 +1,55 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link href="~/Bootstrap/bootstrap-3.3.6-dist/css/Styles.css" rel="stylesheet" />
+        <link href="/css/ucommerce.bootstrap.css" rel="stylesheet">
+        <link href="/css/ucommerce.bootstrap-responsive.css" rel="stylesheet">
+        <link href="/css/ucommerce.masterclass.css" rel="stylesheet">
+        
+        <script src="~/Bootstrap/bootstrap-3.3.6-dist/js/jQuery.js"></script>
+        <script src="/scripts/ucommerce.bootstrap.js"> </script>
+        <script src="/scripts/uCommerce.jQuery.js"></script>
+        <script src="/scripts/uCommerce.ServiceStack.js"></script>
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="nav-collapse">
+                            <ul class="nav">
+                                <li>
+                                    <a class="home" href="/store">Home</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="nav-collapse pull-right">
+                            <ul class="nav">
+                                <li>
+                                    <a href="/cart"><i class="icon-shopping-cart icon-white"></i> Basket</a>
+                                </li>
+                            </ul>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    @{ Html.RenderAction("CategoryNavigation", "MasterClassPartialView"); }
+                </div>
+                <div class="span9">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+﻿@using System.Web.Mvc.Html
+@model MyUCommerceApp.Website.Models.PurchaseOrderViewModel
+@{
+    Layout = "Layout.cshtml";
+}
+
+<h1>Your basket</h1>
+
+<form method="POST">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>SKU</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.OrderLines.Count; i++)
+            {
+                var line = Model.OrderLines[i];
+                <tr>
+
+                    @Html.HiddenFor(model => model.OrderLines[i].Sku)
+                    @Html.HiddenFor(model => model.OrderLines[i].VariantSku)
+                    @Html.HiddenFor(model => model.OrderLines[i].OrderLineId)
+
+                    <td>@line.Sku - @line.VariantSku</td>
+                    <td>@line.ProductName</td>
+                    <td>@Html.TextBoxFor(model => model.OrderLines[i].Quantity)</td>
+                    <td>@line.Total</td>
+                    <td>
+                        <button type="submit" value="@line.OrderLineId" name="RemoveOrderlineId">Remove</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">OrderTotal</td>
+                <td>@Model.OrderTotal</td>
+            </tr>
+        </tfoot>
+    </table>
+    <input type="submit" value="Update basket" name="Update" />
+</form>
+
+<a href="/billing" class="btn btn-sm pull-right">Continue to billing information</a>

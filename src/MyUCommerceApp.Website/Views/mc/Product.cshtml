@@ -1,0 +1,33 @@
+﻿@using System.Web.UI
+@using UCommerce.Runtime
+@using UCommerce.EntitiesV2
+@using UCommerce.Extensions
+@using UCommerce.Api
+@model MyUCommerceApp.Website.Models.ProductViewModel
+@{
+    Layout = "Layout.cshtml";
+}
+
+<h1>@Model.Name</h1>
+
+@if (Model.PriceCalculation != null)
+{
+	<h2>Your price: <span>@Model.PriceCalculation.YourPrice.Amount</span></h2>
+}
+
+
+<span>@Html.Raw(Model.LongDescription)</span>
+
+<form method="POST">
+    <input type="hidden" name="Sku" value="@Model.Sku" />
+    <select name="VariantSku">
+        @foreach (var variant in Model.Variants)
+        {
+            <option value="@variant.VariantSku">@variant.VariantSku</option>
+        }
+    </select>
+    <input type="submit" value="Add To Basket" />
+</form>
+
+
+

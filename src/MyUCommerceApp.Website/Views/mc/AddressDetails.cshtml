@@ -1,0 +1,145 @@
+﻿@using System.Web.Mvc.Html
+@using MyUCommerceApp.Website.Models
+@model MyUCommerceApp.Website.Models.AddressDetailsViewModel
+@{
+    Layout = "Layout.cshtml";
+}
+
+<form method="POST">
+    <div class="row-fluid">
+        <div class="well span6">
+            <legend>Billing</legend>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label>First name</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.FirstName, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="col-lg-2 control-label">Last name</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.LastName, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label>E-mail</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.EmailAddress, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">Company</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.CompanyName, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label class="">Attention</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.Attention, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">Line 1</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.Line1, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label class="">Line 2</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.Line2, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">City</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.City, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label class="">Postal code</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.PostalCode, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">Country</label>
+                    @Html.DropDownList("BillingAddress.CountryId", Model.AvailableCountries, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label class="">Phone</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.PhoneNumber, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">Mobile phone</label>
+                    @Html.TextBoxFor(x => x.BillingAddress.MobilePhoneNumber, new { @class = "span12" })
+                </div>
+            </div>
+        </div>
+    
+        <div class="well span6">
+            <legend>Shipping</legend>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label>First name</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.FirstName, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="col-lg-2 control-label">Last name</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.LastName, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label>E-mail</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.EmailAddress, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">Company</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.CompanyName, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label class="">Attention</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.Attention, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">Line 1</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.Line1, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label class="">Line 2</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.Line2, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">City</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.City, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label class="">Postal code</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.PostalCode, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">Country</label>
+                    @Html.DropDownList("ShippingAddress.CountryId", Model.AvailableCountries, new { @class = "span12" })
+                </div>
+            </div>
+            <div class="span12">
+                <div class="span5 control-group">
+                    <label class="">Phone</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.PhoneNumber, new { @class = "span12" })
+                </div>
+                <div class="span5 control-group">
+                    <label class="">Mobile phone</label>
+                    @Html.TextBoxFor(x => x.ShippingAddress.MobilePhoneNumber, new { @class = "span12" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div style="clear: both;">
+        <a href="/cart" class="btn btn-small">Back to cart</a>
+
+        <input type="submit" value="Continue to Shipping" class="btn btn-sm btn-arrow-right pull-right" />
+    </div>
+</form>

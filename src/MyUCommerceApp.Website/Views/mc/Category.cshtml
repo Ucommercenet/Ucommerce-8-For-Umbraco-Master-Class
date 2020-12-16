@@ -1,0 +1,32 @@
+﻿@using System.Collections
+@using System.Collections.Generic
+@using System.Web.UI
+@using MyUCommerceApp.Website.Models
+@model MyUCommerceApp.Website.Models.CategoryViewModel
+@{
+    Layout = "Layout.cshtml";
+
+}
+
+<h1>@Model.Name</h1>
+
+<span>@Html.Raw(Model.Description)</span>
+
+@foreach (ProductViewModel product in Model.Products)
+{
+    <div>
+        <span>@product.Name</span>
+		@if (product.PriceCalculation != null && product.PriceCalculation.IsDiscounted)
+		{
+			<span style="text-decoration: line-through;">@product.PriceCalculation.ListPrice.Amount</span>
+		}
+
+		@if (product.PriceCalculation != null)
+		{
+			<span>@product.PriceCalculation.YourPrice.Amount</span>
+		}
+        <a href="@product.Url">More info</a>
+    </div>
+}
+
+

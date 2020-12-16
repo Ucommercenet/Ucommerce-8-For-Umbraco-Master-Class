@@ -1,0 +1,88 @@
+﻿@using UCommerce.Api
+@using UCommerce.EntitiesV2
+
+@helper EditorFor(OrderAddress address)
+{
+string prefix = address.AddressName;
+
+    <legend>@prefix address</legend>
+    <div>
+        <label>Name</label>
+        <input type="text" name="@prefix-firstName" value="@address.FirstName" />
+        <input type="text" name="@prefix-lastName" value="@address.LastName" />
+    </div>
+    <div>
+        <label>E-mail</label>
+        <input type="text" name="@prefix-email" value="@address.EmailAddress" />
+    </div>
+    <div>
+        <label>Company</label>
+        <input type="text" name="@prefix-company" value="@address.CompanyName" />
+    </div>
+    <div>
+        <label>Street</label>
+        <input type="text" name="@prefix-line1" value="@address.Line1" />
+    </div>
+    <div>
+        <label>Street 2</label>
+        <input type="text" name="@prefix-line2" value="@address.Line2" />
+    </div>
+    <div>
+        <label>City</label>
+        <input type="text" name="@prefix-city" value="@address.City" />
+    </div>
+    <div>
+        <label>Postal code</label>
+        <input type="text" name="@prefix-postalcode" value="@address.PostalCode" />
+    </div>
+    <div>
+        <label>Country</label>
+        <select name="@prefix-country">
+            @foreach (var country in Country.All().ToList())
+            {
+                <option value="@country.CountryId">@country.Name</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Phone</label>
+        <input type="text" name="@prefix-phone" value="@address.PhoneNumber" />
+    </div>
+    <div>
+        <label>Mobile phone</label>
+        <input type="text" name="@prefix-mobilephone" value="@address.MobilePhoneNumber" />
+    </div>
+}
+
+@helper SaveAddressInfo()
+{
+    TransactionLibrary.EditBillingInformation(
+            Request.Form["billing-firstName"],
+            Request.Form["billing-lastName"],
+            Request.Form["billing-email"],
+            Request.Form["billing-phone"],
+            Request.Form["billing-mobilephone"],
+            Request.Form["billing-company"],
+            Request.Form["billing-line1"],
+            Request.Form["billing-line2"],
+            Request.Form["billing-postalCode"],
+            Request.Form["billing-city"],
+            Request.Form["billing-state"],
+            Request.Form["billing-attention"],
+            Convert.ToInt32(Request.Form["billing-country"]));
+
+    TransactionLibrary.EditShippingInformation(
+        Request.Form["shipping-firstName"],
+        Request.Form["shipping-lastName"],
+        Request.Form["shipping-email"],
+        Request.Form["shipping-phone"],
+        Request.Form["shipping-mobilephone"],
+        Request.Form["shipping-company"],
+        Request.Form["shipping-line1"],
+        Request.Form["shipping-line2"],
+        Request.Form["shipping-postalCode"],
+        Request.Form["shipping-city"],
+        Request.Form["shipping-state"],
+        Request.Form["shipping-attention"],
+        Convert.ToInt32(Request.Form["shipping-country"]));
+}

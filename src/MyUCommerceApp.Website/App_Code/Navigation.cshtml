@@ -1,0 +1,17 @@
+﻿@using UCommerce.EntitiesV2
+@using UCommerce.Api
+@using UCommerce.Extensions
+
+@helper DisplayCategories(ICollection<UCommerce.EntitiesV2.Category> categories)
+{
+    if (categories.Any())
+    {
+        <ul>
+            @foreach (UCommerce.EntitiesV2.Category category in categories)
+            {
+                <li><a href="/Category?Category=@category.CategoryId">@category.DisplayName()</a></li>
+                @DisplayCategories(UCommerce.Api.CatalogLibrary.GetCategories(category))
+            }
+        </ul>
+    }
+}
